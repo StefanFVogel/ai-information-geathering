@@ -44,26 +44,45 @@ def _process_single_file(file_path: Path, config: Config) -> None:
         return
 
     url = str(post.get("url") or post.get("source") or "")
-    if not url or ("youtube.com" not in url and "youtu.be" not in url):
-        click.echo(f"Skipping (no YouTube URL): {file_path.name}")
-        return
-
-    video_id = extract_video_id(url)
-    if not video_id:
-        click.echo(f"Skipping (could not extract video ID): {file_path.name}")
-        return
+    is_youtube = url and ("youtube.com" in url or "youtu.be" in url)
 
     click.echo(f"Processing: {file_path.name}")
-    _enrich_with_metadata(post, url)
-    _enrich_with_transcript(post, video_id, config)
 
+    if is_youtube:
+        video_id = extract_video_id(url)
+        if not video_id:
+            click.echo(f"  Warning: could not extract video ID from {url}")
+        else:
+            _enrich_with_metadata(post, url)
+            _enrich_with_transcript(post, video_id, config)
+
+    source_type = _detect_source_type(url)
     post["status"] = "processed"
+    post["source_type"] = source_type
     write_note(file_path, post)
 
-    dest = move_to_sources(file_path, config.vault_path, "youtube")
-    append_to_log(config.vault_path, "ingest", f"Processed {dest.name}")
+    dest = move_to_sources(file_path, config.vault_path, source_type)
+    append_to_log(config.vault_path, "ingest", f"Processed {dest.name} ({source_type})")
     click.echo(f"  -> Moved to {dest}")
     click.echo("  -> Ready for Claude: ask me to summarize and update wiki pages")
+
+
+def _detect_source_type(url: str) -> str:
+    """Detect source type from URL.
+
+    Args:
+        url: The source URL.
+
+    Returns:
+        Source type string: youtube, articles, papers, or other.
+    """
+    if not url:
+        return "other"
+    if "youtube.com" in url or "youtu.be" in url:
+        return "youtube"
+    if "arxiv.org" in url:
+        return "papers"
+    return "articles"
 
 
 def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:
