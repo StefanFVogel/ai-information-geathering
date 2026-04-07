@@ -8,12 +8,9 @@ import frontmatter  # type: ignore[import-untyped]
 from src.config import Config
 from src.metadata import Ok as MetaOk
 from src.metadata import extract_video_id, fetch_metadata
-from src.summarize import Ok as SumOk
-from src.summarize import generate_summary
 from src.transcript import Err as TrErr
 from src.transcript import extract_transcript
 from src.vault import append_to_log, list_inbox, move_to_sources, write_note
-from src.wiki import update_index, update_wiki_from_summary
 
 
 def process_inbox(config: Config) -> None:
@@ -64,37 +61,9 @@ def _process_single_file(file_path: Path, config: Config) -> None:
     write_note(file_path, post)
 
     dest = move_to_sources(file_path, config.vault_path, "youtube")
-    _update_wiki(config.vault_path, dest.name, post)
     append_to_log(config.vault_path, "ingest", f"Processed {dest.name}")
     click.echo(f"  -> Moved to {dest}")
-
-
-def _update_wiki(vault_path: Path, source_filename: str, post: frontmatter.Post) -> None:
-    """Update wiki pages based on summary entities.
-
-    Args:
-        vault_path: Root path of the Obsidian vault.
-        source_filename: Name of the processed source file.
-        post: The processed post with summary content.
-    """
-    content = post.content or ""
-    import re
-
-    wikilinks = re.findall(r"\[\[([^\]]+)\]\]", content)
-    people: list[str] = []
-    concepts: list[str] = []
-
-    for link in wikilinks:
-        parts = link.split()
-        if len(parts) == 2 and parts[0][0].isupper() and parts[1][0].isupper():
-            people.append(link)
-        else:
-            concepts.append(link)
-
-    if people or concepts:
-        updated = update_wiki_from_summary(vault_path, source_filename, people, concepts, [])
-        update_index(vault_path)
-        click.echo(f"  -> Updated {len(updated)} wiki page(s)")
+    click.echo("  -> Ready for Claude: ask me to summarize and update wiki pages")
 
 
 def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:
@@ -125,7 +94,7 @@ def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:
 
 
 def _enrich_with_transcript(post: frontmatter.Post, video_id: str, config: Config) -> None:
-    """Add transcript and summary to the post content.
+    """Add transcript to the post content.
 
     Args:
         post: The frontmatter post to enrich.
@@ -142,25 +111,7 @@ def _enrich_with_transcript(post: frontmatter.Post, video_id: str, config: Confi
     transcript = tr_result.value
     post["language"] = transcript.language
 
-    title = str(post.get("title", "Untitled"))
-    summary_result = generate_summary(transcript.full_text, title, config.summary_length)
-
-    summary_section = _build_summary_section(summary_result)
+    summary_placeholder = "## Summary\n\n*Ask Claude to summarize this transcript.*\n"
     transcript_section = f"\n\n---\n\n## Transcript\n\n{transcript.timestamped_text}"
 
-    post.content = f"{summary_section}\n\n{post.content}{transcript_section}"
-
-
-def _build_summary_section(summary_result: object) -> str:
-    """Build the summary markdown section.
-
-    Args:
-        summary_result: Result from generate_summary.
-
-    Returns:
-        Formatted summary section string.
-    """
-    if isinstance(summary_result, SumOk):
-        return f"## Summary\n\n{summary_result.value.text}"
-
-    return "> **Note**: Summary generation failed."
+    post.content = f"{summary_placeholder}\n\n{post.content}{transcript_section}"
