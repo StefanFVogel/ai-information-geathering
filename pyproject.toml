@@ -1,0 +1,33 @@
+[project]
+name = "ai-information-gathering"
+version = "0.1.0"
+description = "Personal AI knowledge management: collect, summarize, and organize content in an Obsidian wiki"
+requires-python = ">=3.12"
+dependencies = [
+    "youtube-transcript-api>=1.0.0",
+    "yt-dlp>=2024.0.0",
+    "feedparser>=6.0.0",
+    "python-frontmatter>=1.1.0",
+    "click>=8.1.0",
+    "pyyaml>=6.0.0",
+    "anthropic>=0.40.0",
+]
+
+[project.scripts]
+aig = "src.cli:main"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "basic"
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = true
+fail-under = 80

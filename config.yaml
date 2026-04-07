@@ -1,0 +1,4 @@
+vault_path: "./vault"
+summary_length: 300
+last_feed_check: null
+channels: []

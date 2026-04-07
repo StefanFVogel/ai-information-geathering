@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "YouTube Video",
+  "behavior": "create",
+  "noteContentFormat": "{{description}}",
+  "properties": [
+    {
+      "name": "type",
+      "value": "inbox"
+    },
+    {
+      "name": "source_type",
+      "value": "youtube"
+    },
+    {
+      "name": "title",
+      "value": "{{title|replace:\" - YouTube\":\"\"}}"
+    },
+    {
+      "name": "url",
+      "value": "{{url}}"
+    },
+    {
+      "name": "author",
+      "value": "{{author}}"
+    },
+    {
+      "name": "date",
+      "value": "{{date|date:\"YYYY-MM-DD\"}}"
+    },
+    {
+      "name": "tags",
+      "value": "[ai]"
+    },
+    {
+      "name": "status",
+      "value": "inbox"
+    },
+    {
+      "name": "relevance",
+      "value": "3"
+    }
+  ],
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title|replace:\" - YouTube\":\"\"|slugify}}",
+  "path": "inbox",
+  "triggers": ["youtube.com/watch", "youtu.be/"]
+}
