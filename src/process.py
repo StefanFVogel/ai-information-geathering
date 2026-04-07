@@ -46,7 +46,7 @@ def _process_single_file(file_path: Path, config: Config) -> None:
         click.echo(f"Skipping (already processed): {file_path.name}")
         return
 
-    url = str(post.get("url", ""))
+    url = str(post.get("url") or post.get("source") or "")
     if not url or ("youtube.com" not in url and "youtu.be" not in url):
         click.echo(f"Skipping (no YouTube URL): {file_path.name}")
         return
@@ -66,7 +66,7 @@ def _process_single_file(file_path: Path, config: Config) -> None:
     dest = move_to_sources(file_path, config.vault_path, "youtube")
     _update_wiki(config.vault_path, dest.name, post)
     append_to_log(config.vault_path, "ingest", f"Processed {dest.name}")
-    click.echo(f"  → Moved to {dest}")
+    click.echo(f"  -> Moved to {dest}")
 
 
 def _update_wiki(vault_path: Path, source_filename: str, post: frontmatter.Post) -> None:
@@ -94,7 +94,7 @@ def _update_wiki(vault_path: Path, source_filename: str, post: frontmatter.Post)
     if people or concepts:
         updated = update_wiki_from_summary(vault_path, source_filename, people, concepts, [])
         update_index(vault_path)
-        click.echo(f"  → Updated {len(updated)} wiki page(s)")
+        click.echo(f"  -> Updated {len(updated)} wiki page(s)")
 
 
 def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:

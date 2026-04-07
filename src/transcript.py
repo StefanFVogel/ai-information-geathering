@@ -66,61 +66,83 @@ def extract_transcript(video_id: str, preferred_language: str = "en") -> Transcr
     Returns:
         Ok with Transcript on success, Err with message on failure.
     """
+    api = YouTubeTranscriptApi()
+
     try:
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)  # type: ignore[attr-defined]
+        transcript_list = api.list(video_id)
     except Exception as e:
         return Err(f"Could not access transcripts for video {video_id}: {e}")
 
-    return _find_best_transcript(transcript_list, preferred_language)
+    return _find_best_transcript(transcript_list, preferred_language, api, video_id)
 
 
-def _find_best_transcript(transcript_list: Any, preferred_language: str) -> TranscriptResult:
+def _find_best_transcript(
+    transcript_list: Any, preferred_language: str, api: Any, video_id: str
+) -> TranscriptResult:
     """Find the best available transcript from the transcript list.
 
     Args:
         transcript_list: YouTube transcript list object.
         preferred_language: Preferred language code.
+        api: YouTubeTranscriptApi instance.
+        video_id: The video ID for fetching.
 
     Returns:
         Ok with Transcript on success, Err with message on failure.
     """
+    best_transcript = None
+    language = "unknown"
+
     try:
-        transcript = transcript_list.find_transcript([preferred_language])
-    except Exception:
-        try:
-            transcript = transcript_list.find_generated_transcript([preferred_language])
-        except Exception:
-            try:
-                available = list(transcript_list)
-                if not available:
-                    return Err("No transcripts available for this video.")
-                transcript = available[0]
-            except Exception as e:
-                return Err(f"Failed to find any transcript: {e}")
+        available = list(transcript_list)
+        if not available:
+            return Err("No transcripts available for this video.")
 
-    return _fetch_and_parse(transcript)
+        # Prefer manual transcript in preferred language
+        for t in available:
+            if t.language_code == preferred_language and not t.is_generated:
+                best_transcript = t
+                break
+
+        # Fallback: auto-generated in preferred language
+        if best_transcript is None:
+            for t in available:
+                if t.language_code == preferred_language:
+                    best_transcript = t
+                    break
+
+        # Fallback: any available transcript
+        if best_transcript is None:
+            best_transcript = available[0]
+
+        language = best_transcript.language_code
+    except Exception as e:
+        return Err(f"Failed to find any transcript: {e}")
+
+    return _fetch_and_parse(api, video_id, language)
 
 
-def _fetch_and_parse(transcript: Any) -> TranscriptResult:
+def _fetch_and_parse(api: Any, video_id: str, language: str) -> TranscriptResult:
     """Fetch transcript data and parse into segments.
 
     Args:
-        transcript: A YouTube transcript object.
+        api: YouTubeTranscriptApi instance.
+        video_id: The video ID.
+        language: Language code to fetch.
 
     Returns:
         Ok with Transcript on success, Err with message on failure.
     """
     try:
-        data = transcript.fetch()
+        fetched = api.fetch(video_id, languages=[language])
         segments = [
             TranscriptSegment(
-                text=entry["text"],
-                start=entry["start"],
-                duration=entry["duration"],
+                text=snippet.text,
+                start=snippet.start,
+                duration=snippet.duration,
             )
-            for entry in data
+            for snippet in fetched.snippets
         ]
-        language: str = getattr(transcript, "language_code", "unknown")
         return Ok(value=Transcript(segments=segments, language=language))
     except Exception as e:
         return Err(f"Failed to fetch transcript: {e}")
