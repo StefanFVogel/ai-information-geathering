@@ -3,7 +3,7 @@
 from datetime import datetime
 from pathlib import Path
 
-import frontmatter
+import frontmatter  # type: ignore[import-untyped]
 
 
 def ensure_vault_structure(vault_path: Path) -> None:
@@ -54,7 +54,7 @@ def read_note(file_path: Path) -> frontmatter.Post:
     Returns:
         Parsed frontmatter Post object with metadata and content.
     """
-    return frontmatter.load(file_path)
+    return frontmatter.load(str(file_path))
 
 
 def write_note(file_path: Path, post: frontmatter.Post) -> None:

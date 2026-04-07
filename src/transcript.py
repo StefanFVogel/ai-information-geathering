@@ -1,8 +1,9 @@
 """Extract transcripts from YouTube videos."""
 
 from dataclasses import dataclass
+from typing import Any
 
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi  # type: ignore[import-untyped]
 
 
 @dataclass
@@ -66,14 +67,14 @@ def extract_transcript(video_id: str, preferred_language: str = "en") -> Transcr
         Ok with Transcript on success, Err with message on failure.
     """
     try:
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)  # type: ignore[attr-defined]
     except Exception as e:
         return Err(f"Could not access transcripts for video {video_id}: {e}")
 
     return _find_best_transcript(transcript_list, preferred_language)
 
 
-def _find_best_transcript(transcript_list: object, preferred_language: str) -> TranscriptResult:
+def _find_best_transcript(transcript_list: Any, preferred_language: str) -> TranscriptResult:
     """Find the best available transcript from the transcript list.
 
     Args:
@@ -100,7 +101,7 @@ def _find_best_transcript(transcript_list: object, preferred_language: str) -> T
     return _fetch_and_parse(transcript)
 
 
-def _fetch_and_parse(transcript: object) -> TranscriptResult:
+def _fetch_and_parse(transcript: Any) -> TranscriptResult:
     """Fetch transcript data and parse into segments.
 
     Args:
@@ -119,7 +120,7 @@ def _fetch_and_parse(transcript: object) -> TranscriptResult:
             )
             for entry in data
         ]
-        language = getattr(transcript, "language_code", "unknown")
+        language: str = getattr(transcript, "language_code", "unknown")
         return Ok(value=Transcript(segments=segments, language=language))
     except Exception as e:
         return Err(f"Failed to fetch transcript: {e}")

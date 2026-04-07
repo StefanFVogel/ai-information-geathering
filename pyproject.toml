@@ -26,6 +26,10 @@ select = ["E", "F", "I", "W", "UP", "B", "SIM"]
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "basic"
+venvPath = "."
+venv = ".venv"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
 
 [tool.interrogate]
 ignore-init-method = true

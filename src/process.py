@@ -3,11 +3,12 @@
 from pathlib import Path
 
 import click
-import frontmatter
+import frontmatter  # type: ignore[import-untyped]
 
 from src.config import Config
+from src.metadata import Ok as MetaOk
 from src.metadata import extract_video_id, fetch_metadata
-from src.summarize import Err as SumErr
+from src.summarize import Ok as SumOk
 from src.summarize import generate_summary
 from src.transcript import Err as TrErr
 from src.transcript import extract_transcript
@@ -38,14 +39,14 @@ def _process_single_file(file_path: Path, config: Config) -> None:
         file_path: Path to the inbox file.
         config: Application configuration.
     """
-    post = frontmatter.load(file_path)
+    post = frontmatter.load(str(file_path))
 
     if post.get("status") == "processed":
         click.echo(f"Skipping (already processed): {file_path.name}")
         return
 
-    url = post.get("url", "")
-    if not url or "youtube.com" not in url and "youtu.be" not in url:
+    url = str(post.get("url", ""))
+    if not url or ("youtube.com" not in url and "youtu.be" not in url):
         click.echo(f"Skipping (no YouTube URL): {file_path.name}")
         return
 
@@ -74,7 +75,7 @@ def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:
         url: The YouTube video URL.
     """
     result = fetch_metadata(url)
-    if isinstance(result, type) or hasattr(result, "message"):
+    if not isinstance(result, MetaOk):
         return
 
     meta = result.value
@@ -86,7 +87,8 @@ def _enrich_with_metadata(post: frontmatter.Post, url: str) -> None:
         post["date"] = meta.upload_date.isoformat()
 
     if meta.tags:
-        existing_tags = post.get("tags", []) or []
+        raw_tags = post.get("tags") or []
+        existing_tags: list[str] = list(raw_tags) if isinstance(raw_tags, list) else []
         post["tags"] = list(set(existing_tags + meta.tags[:10]))
 
     post["duration"] = meta.duration
@@ -110,8 +112,8 @@ def _enrich_with_transcript(post: frontmatter.Post, video_id: str, config: Confi
     transcript = tr_result.value
     post["language"] = transcript.language
 
-    title = post.get("title", "Untitled")
-    summary_result = generate_summary(transcript.full_text, str(title), config.summary_length)
+    title = str(post.get("title", "Untitled"))
+    summary_result = generate_summary(transcript.full_text, title, config.summary_length)
 
     summary_section = _build_summary_section(summary_result)
     transcript_section = f"\n\n---\n\n## Transcript\n\n{transcript.timestamped_text}"
@@ -128,7 +130,7 @@ def _build_summary_section(summary_result: object) -> str:
     Returns:
         Formatted summary section string.
     """
-    if isinstance(summary_result, SumErr):
-        return f"> **Note**: Summary generation failed: {summary_result.message}"
+    if isinstance(summary_result, SumOk):
+        return f"## Summary\n\n{summary_result.value.text}"
 
-    return f"## Summary\n\n{summary_result.value.text}"
+    return "> **Note**: Summary generation failed."

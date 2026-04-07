@@ -2,8 +2,9 @@
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 
-import feedparser
+import feedparser  # type: ignore[import-untyped]
 
 YOUTUBE_RSS_BASE = "https://www.youtube.com/feeds/videos.xml?channel_id="
 
@@ -42,13 +43,16 @@ def fetch_feed(rss_url: str) -> list[FeedEntry]:
     feed = feedparser.parse(rss_url)
     entries: list[FeedEntry] = []
 
+    feed_info: Any = feed.feed
+    channel_name = str(feed_info.get("title", "Unknown")) if hasattr(feed_info, "get") else "Unknown"
+
     for entry in feed.entries:
         published = _parse_published(entry)
         entries.append(
             FeedEntry(
-                title=entry.get("title", "Untitled"),
-                url=entry.get("link", ""),
-                channel_name=feed.feed.get("title", "Unknown"),
+                title=str(entry.get("title", "Untitled")),
+                url=str(entry.get("link", "")),
+                channel_name=channel_name,
                 published=published,
             )
         )

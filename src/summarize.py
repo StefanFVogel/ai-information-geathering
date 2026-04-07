@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 
-import anthropic
+import anthropic  # type: ignore[import-untyped]
 
 SUMMARY_SYSTEM_PROMPT = """You are a knowledge curator for a personal Obsidian wiki.
 Your job is to summarize video transcripts and extract key entities.
@@ -73,7 +73,8 @@ def generate_summary(transcript_text: str, title: str, summary_length: int = 300
     except Exception as e:
         return Err(f"Claude API error: {e}")
 
-    response_text = message.content[0].text
+    first_block = message.content[0]
+    response_text: str = getattr(first_block, "text", str(first_block))
     entities = _extract_entities(response_text)
 
     return Ok(

@@ -3,8 +3,9 @@
 import re
 from dataclasses import dataclass
 from datetime import date
+from typing import Any
 
-import yt_dlp
+import yt_dlp  # type: ignore[import-untyped]
 
 
 @dataclass
@@ -68,7 +69,7 @@ def fetch_metadata(url: str) -> MetadataResult:
     Returns:
         Ok with VideoMetadata on success, Err with message on failure.
     """
-    opts = {
+    opts: dict[str, Any] = {
         "quiet": True,
         "no_warnings": True,
         "skip_download": True,
@@ -76,7 +77,7 @@ def fetch_metadata(url: str) -> MetadataResult:
     }
 
     try:
-        with yt_dlp.YoutubeDL(opts) as ydl:
+        with yt_dlp.YoutubeDL(opts) as ydl:  # type: ignore[arg-type]
             info = ydl.extract_info(url, download=False)
     except Exception as e:
         return Err(f"Failed to fetch metadata for {url}: {e}")
@@ -84,10 +85,10 @@ def fetch_metadata(url: str) -> MetadataResult:
     if info is None:
         return Err(f"No metadata returned for {url}")
 
-    return Ok(value=_parse_info(info, url))
+    return Ok(value=_parse_info(dict(info), url))
 
 
-def _parse_info(info: dict[str, object], url: str) -> VideoMetadata:
+def _parse_info(info: dict[str, Any], url: str) -> VideoMetadata:
     """Parse yt-dlp info dict into VideoMetadata.
 
     Args:
@@ -99,6 +100,8 @@ def _parse_info(info: dict[str, object], url: str) -> VideoMetadata:
     """
     upload_date_str = str(info.get("upload_date", ""))
     upload_date = _parse_date(upload_date_str)
+    raw_tags: list[str] = info.get("tags") or []
+    raw_duration: int = info.get("duration") or 0
 
     return VideoMetadata(
         video_id=str(info.get("id", "")),
@@ -107,8 +110,8 @@ def _parse_info(info: dict[str, object], url: str) -> VideoMetadata:
         channel_id=str(info.get("channel_id", "")),
         upload_date=upload_date,
         description=str(info.get("description", "")),
-        tags=list(info.get("tags", []) or []),
-        duration=int(info.get("duration", 0) or 0),
+        tags=raw_tags,
+        duration=raw_duration,
         url=url,
     )
 
@@ -136,7 +139,7 @@ def resolve_channel_id(channel_url: str) -> MetadataResult:
     Returns:
         Ok with a VideoMetadata-like object containing channel info, Err on failure.
     """
-    opts = {
+    opts: dict[str, Any] = {
         "quiet": True,
         "no_warnings": True,
         "skip_download": True,
@@ -145,7 +148,7 @@ def resolve_channel_id(channel_url: str) -> MetadataResult:
     }
 
     try:
-        with yt_dlp.YoutubeDL(opts) as ydl:
+        with yt_dlp.YoutubeDL(opts) as ydl:  # type: ignore[arg-type]
             info = ydl.extract_info(channel_url, download=False)
     except Exception as e:
         return Err(f"Failed to resolve channel {channel_url}: {e}")
