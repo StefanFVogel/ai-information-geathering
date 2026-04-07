@@ -41,7 +41,7 @@
       "value": "3"
     }
   ],
-  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title|replace:\" - YouTube\":\"\"|slugify}}",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title|replace:\" - YouTube\":\"\"|safe_name}}",
   "path": "inbox",
   "triggers": ["youtube.com/watch", "youtu.be/"]
 }
