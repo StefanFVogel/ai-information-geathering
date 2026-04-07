@@ -2,9 +2,9 @@
 
 ## Status
 - [x] Requirements
-- [ ] Architecture
-- [ ] Implementation
-- [ ] QA
+- [x] Architecture
+- [x] Implementation
+- [x] QA
 - [ ] Deployed
 
 ## User Stories
@@ -37,10 +37,47 @@
 - Obsidian Vault mit definierter Struktur (vault/schema.md)
 
 ## Tech Design
-*Wird von /architecture ausgefüllt*
+
+### Component Structure
+```
+src/
+  wiki.py              ← NEW  Wiki page CRUD, index rebuild, lint
+  process.py           ← MOD  Integrated wiki update after ingest
+  cli.py               ← MOD  Added wiki rebuild-index, wiki lint commands
+```
+
+### Tech Decisions
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Entity detection | Wikilink regex from summary text | Simple, leverages Claude's output |
+| Page format | frontmatter Post with related_sources | Tracks provenance per entity |
+| Index rebuild | Full scan of wiki/ directory | Reliable at moderate scale (<100 pages) |
+| Lint | Orphan + broken link detection | Two most common wiki health issues |
 
 ## QA Results
-*Wird von /qa ausgefüllt*
+
+**Date:** 2026-04-07
+**Tester:** Claude QA
+**Ampel:** GREEN
+
+### Acceptance Criteria
+
+| # | Criterion | Status | Evidence |
+|---|-----------|--------|----------|
+| 1 | Entity page creation (people) | PASS | test_update_wiki_creates_people_page |
+| 2 | Entity page creation (concepts) | PASS | test_update_wiki_creates_concept_page |
+| 3 | Source reference on existing page | PASS | test_update_wiki_adds_source_to_existing |
+| 4 | No duplicate sources | PASS | test_update_wiki_no_duplicate_source |
+| 5 | Index rebuild includes all pages | PASS | test_update_index |
+| 6 | Index shows empty sections | PASS | test_update_index_empty_wiki |
+| 7 | Lint detects orphaned pages | PASS | test_lint_wiki_finds_orphans |
+| 8 | Lint passes on healthy wiki | PASS | test_lint_wiki_healthy |
+| 9 | Wiki integrated into ingest pipeline | PASS | process.py _update_wiki called after ingest |
+| 10 | CLI commands wiki rebuild-index, lint | PASS | Import check OK |
+
+### Verdict
+**READY**
 
 ## Changelog
 - 2026-04-07: Erstellt via Superpowers Brainstorming
+- 2026-04-07: Architecture, Implementation, QA completed

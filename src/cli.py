@@ -4,12 +4,14 @@ from datetime import datetime
 
 import click
 
+from src.briefing import generate_briefing
 from src.config import Channel, load_config, save_config
 from src.feed import build_rss_url, get_new_videos
 from src.metadata import Err as MetaErr
 from src.metadata import resolve_channel_id
 from src.process import process_inbox
 from src.vault import ensure_vault_structure
+from src.wiki import lint_wiki, update_index
 
 
 @click.group()
@@ -133,6 +135,59 @@ def feed_check() -> None:
     config.last_feed_check = datetime.now()
     save_config(config)
     click.echo(f"\nTotal: {total_new} new video(s). Last check updated.")
+
+
+@main.command()
+def briefing() -> None:
+    """Generate a daily briefing from tracked channels."""
+    config = load_config()
+
+    if not config.channels:
+        click.echo("No channels tracked. Use 'aig channel add <url>' to add one.")
+        return
+
+    result = generate_briefing(config)
+    if result:
+        click.echo(f"Briefing created: {result}")
+    else:
+        click.echo("Could not generate briefing.")
+
+
+@main.group()
+def wiki() -> None:
+    """Wiki maintenance commands."""
+
+
+@wiki.command("rebuild-index")
+def wiki_rebuild_index() -> None:
+    """Rebuild the wiki index from all wiki pages."""
+    config = load_config()
+    update_index(config.vault_path)
+    click.echo("Wiki index rebuilt.")
+
+
+@wiki.command("lint")
+def wiki_lint() -> None:
+    """Check wiki health: orphaned pages, missing links."""
+    config = load_config()
+    findings = lint_wiki(config.vault_path)
+
+    orphaned = findings.get("orphaned_pages", [])
+    broken = findings.get("broken_links", [])
+
+    if not orphaned and not broken:
+        click.echo("Wiki is healthy. No issues found.")
+        return
+
+    if orphaned:
+        click.echo(f"\nOrphaned pages ({len(orphaned)}):")
+        for page in orphaned:
+            click.echo(f"  - {page}")
+
+    if broken:
+        click.echo(f"\nBroken links ({len(broken)}):")
+        for link in broken:
+            click.echo(f"  - [[{link}]]")
 
 
 if __name__ == "__main__":

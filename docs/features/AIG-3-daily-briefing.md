@@ -2,9 +2,9 @@
 
 ## Status
 - [x] Requirements
-- [ ] Architecture
-- [ ] Implementation
-- [ ] QA
+- [x] Architecture
+- [x] Implementation
+- [x] QA
 - [ ] Deployed
 
 ## User Stories
@@ -36,10 +36,45 @@
 - config.yaml (Kanalliste)
 
 ## Tech Design
-*Wird von /architecture ausgefüllt*
+
+### Component Structure
+```
+src/
+  briefing.py          ← NEW  Briefing generation, trend detection, new people
+  cli.py               ← MOD  Added briefing command
+```
+
+### Tech Decisions
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Trend detection | Counter over topics frontmatter in last 7 days | Simple, no external deps |
+| New people | Compare channel names vs existing wiki/people/ | Lightweight heuristic |
+| Max entries | 10 per briefing, rest as "X more" | Keeps briefing scannable |
+| Output | Markdown in vault/daily/YYYY-MM-DD.md | Obsidian-native, browsable |
 
 ## QA Results
-*Wird von /qa ausgefüllt*
+
+**Date:** 2026-04-07
+**Tester:** Claude QA
+**Ampel:** GREEN
+
+### Acceptance Criteria
+
+| # | Criterion | Status | Evidence |
+|---|-----------|--------|----------|
+| 1 | No channels → returns None | PASS | test_generate_briefing_no_channels |
+| 2 | No entries → "No new videos" | PASS | test_build_briefing_content_no_entries |
+| 3 | Entries shown with title, channel, date | PASS | test_build_briefing_content_with_entries |
+| 4 | Max 10 entries, rest as "X more" | PASS | test_build_briefing_content_caps_at_10 |
+| 5 | Trend section with wikilinks | PASS | test_build_briefing_content_with_trends |
+| 6 | New people section | PASS | test_build_briefing_content_with_new_people |
+| 7 | Trend detection from sources | PASS | test_detect_trends_with_sources |
+| 8 | Empty trends when no sources | PASS | test_detect_trends_empty |
+| 9 | CLI briefing command | PASS | Import check OK |
+
+### Verdict
+**READY**
 
 ## Changelog
 - 2026-04-07: Erstellt via Superpowers Brainstorming
+- 2026-04-07: Architecture, Implementation, QA completed

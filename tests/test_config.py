@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-from src.config import Config, Channel, load_config, save_config
+from src.config import Channel, Config, load_config, save_config
 
 
 def test_load_config_defaults(tmp_path: Path) -> None:
