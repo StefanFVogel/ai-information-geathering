@@ -196,7 +196,12 @@ def lint_wiki(vault_path: Path) -> dict[str, list[str]]:
             referenced_entities.update(wikilinks)
 
     for entity in referenced_entities:
-        slug = _slugify(entity)
+        # Skip file references (contain .md extension)
+        if entity.endswith(".md"):
+            continue
+        # Handle Obsidian alias syntax [[Target|Display]]
+        entity_name = entity.split("|")[0].strip()
+        slug = _slugify(entity_name)
         found = False
         for category in ["people", "concepts", "tools", "syntheses"]:
             if (wiki_path / category / f"{slug}.md").exists():
