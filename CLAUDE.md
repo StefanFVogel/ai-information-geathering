@@ -38,7 +38,6 @@ Primary ingest: Obsidian Web Clipper → `vault/inbox/` → `aig process` → so
 | `src/metadata.py` | Video metadata via yt-dlp |
 | `src/feed.py` | YouTube RSS feed monitoring (feedparser) |
 | `src/process.py` | Post-processing pipeline: transcript → summary → wiki update |
-| `src/summarize.py` | Claude API summary generation + wikilink extraction |
 | `src/vault.py` | Obsidian vault file operations (read/write/move/log) |
 | `src/wiki.py` | Wiki page CRUD, index rebuild, lint |
 | `src/briefing.py` | Daily briefing generation, trend detection |
