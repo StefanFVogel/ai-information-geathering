@@ -22,3 +22,6 @@ title: "Activity Log"
 - [2026-04-07 18:16] **wiki-update**: Summarized article: Introducing Codex Plugin for Claude Code - Codex.md
 - [2026-04-07 18:38] **ingest**: Processed 2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md (youtube)
 - [2026-04-07 18:38] **wiki-update**: Summarized: 2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md
+- [2026-04-08 08:57] **ingest**: Processed 2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md (youtube)
+- [2026-04-08 08:57] **ingest**: Processed 2026-04-08-GSD Framework für Claude Code Version 1 & 2 im PRAXISTEST. Was ist besser.md (youtube)
+- [2026-04-08 08:57] **ingest**: Processed 2026-04-08-Karpathy's LLM Wiki Watch Me Build a Knowledge Base From Scratch!.md (youtube)
