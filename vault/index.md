@@ -9,9 +9,11 @@ type: index
 
 ## People
 
+- [[Alex Sprogis]]
 - [[Andrej Karpathy]]
 - [[Michael McCaul]]
 - [[Nate Herk]]
+- [[Onchain AI Garage]]
 - [[Samin Yasar]]
 - [[Simon Scrapes]]
 
