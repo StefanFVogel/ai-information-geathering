@@ -1,6 +1,3 @@
-# Obsidian Vault (not in git, user-managed)
-vault/
-
 # Python
 .venv/
 __pycache__/

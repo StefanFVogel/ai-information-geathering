@@ -51,7 +51,7 @@ Run: `.venv/Scripts/python.exe -m pytest tests/ -v`
 
 ### Conventions
 
-- **Vault is NOT in git** — configured in `.gitignore`, path in `config.yaml`
+- **Vault is in git** — path configured in `config.yaml`
 - **Frontmatter standard** — see `vault/schema.md` for type/source_type/status/tags/topics
 - **Wikilinks** — People: `[[Firstname Lastname]]`, Concepts: `[[Concept Name]]`, Tools: `[[Tool Name]]`
 - **Result pattern** — Ok/Err dataclasses for expected errors (no exceptions)
