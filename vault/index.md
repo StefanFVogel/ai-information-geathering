@@ -1,5 +1,5 @@
 ---
-last_updated: '2026-04-08'
+last_updated: '2026-04-12'
 title: Wiki Index
 type: index
 ---
@@ -27,7 +27,9 @@ type: index
 - [[Claude Code Skills]]
 - [[Code Review]]
 - [[Copy Trading]]
+- [[Git Worktree]]
 - [[Hot Cache]]
+- [[Kanban]]
 - [[Knowledge Management]]
 - [[Linting]]
 - [[LLM Wiki]]
@@ -44,13 +46,25 @@ type: index
 ## Tools
 
 - [[Alpaca]]
+- [[Andrej Karpathy Skills]]
 - [[Capitol Trades]]
 - [[Claude Code]]
 - [[Codex]]
+- [[GitHub]]
 - [[GPT 5.4]]
+- [[K6]]
+- [[Notion]]
 - [[Obsidian Web Clipper]]
 - [[Obsidian]]
 - [[Opus 4.6]]
+- [[Paperclip]]
+- [[Playwright]]
+- [[shadcn UI]]
+- [[Supabase]]
+- [[tmux]]
+- [[Trello]]
+- [[Verdant]]
+- [[Vibe Kanban]]
 
 ## Syntheses
 

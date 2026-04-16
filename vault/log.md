@@ -25,3 +25,6 @@ title: "Activity Log"
 - [2026-04-08 08:57] **ingest**: Processed 2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md (youtube)
 - [2026-04-08 08:57] **ingest**: Processed 2026-04-08-GSD Framework für Claude Code Version 1 & 2 im PRAXISTEST. Was ist besser.md (youtube)
 - [2026-04-08 08:57] **ingest**: Processed 2026-04-08-Karpathy's LLM Wiki Watch Me Build a Knowledge Base From Scratch!.md (youtube)
+- [2026-04-12 20:09] **ingest**: Processed 2026-04-09-Stop Using Claude Code in Terminal (It’s Holding You Back).md (other)
+- [2026-04-12 20:24] **ingest**: Processed 2026-04-12-How I Start Every Claude Code Project.md (youtube)
+- [2026-04-12 20:24] **ingest**: Processed 2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes YOUR AI CODER WAY BETTER!.md (youtube)

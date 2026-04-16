@@ -23,10 +23,15 @@ package.json
 package-lock.json
 
 # Claude Code files from standards submodule (restored via: python standards/scripts/maintain_tools.py --setup)
+.claude/.standards-version
+.claude/commands/apply-review.md
 .claude/commands/changes.md
 .claude/commands/code-review.md
+.claude/commands/manual-review.md
 .claude/commands/project-check.md
 .claude/commands/review-fix.md
+.claude/commands/skill-review.md
+.claude/commands/wiki-init.md
 .claude/agents/quality-gate.md
 .claude/agents/test-runner.md
 .claude/hooks/safety_guard.py

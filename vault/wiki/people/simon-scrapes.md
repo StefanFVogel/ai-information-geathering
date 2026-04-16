@@ -1,10 +1,11 @@
 ---
 category: people
-last_updated: '2026-04-08'
+last_updated: '2026-04-12'
 related_sources:
 - Build Self-Improving Claude Code Skills. The Results Are Crazy.md
 - How to Use Claude Code Skills Like the 1% (it's easy actually).md
 - 2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md
+- 2026-04-09-Stop Using Claude Code in Terminal (It’s Holding You Back).md
 title: Simon Scrapes
 type: wiki
 ---
@@ -34,3 +35,4 @@ YouTube creator (@simonscrapes, ~40K subscribers) focused on practical AI agent 
 - [[Build Self-Improving Claude Code Skills. The Results Are Crazy.md]]
 - [[How to Use Claude Code Skills Like the 1% (it's easy actually).md]]
 - [[2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md]]
+- [[2026-04-09-Stop Using Claude Code in Terminal (It’s Holding You Back).md]]
