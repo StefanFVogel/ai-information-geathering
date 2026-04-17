@@ -1,8 +1,9 @@
 ---
 category: people
-last_updated: '2026-04-08'
+last_updated: '2026-04-17'
 related_sources:
 - Claude Just Changed the Stock Market Forever! (Tutorial).md
+- 2026-04-17-I Gave OpenClaw $10,000 to Trade Stocks.md
 title: Samin Yasar
 type: wiki
 ---
@@ -30,3 +31,6 @@ YouTube creator (@SaminYasar_, frequent uploads) focused on the Claude/Anthropic
 ## Sources
 
 - [[Claude Just Changed the Stock Market Forever! (Tutorial).md]]
+- [[2026-04-17-I Gave OpenClaw $10,000 to Trade Stocks.md]]
+
+> Anmerkung: In der OpenClaw-Challenge erwähnt Samin, 5 Jahre bei JP Morgan gearbeitet zu haben (später auch Goldman Sachs). Das kann neben seiner Amazon-Zeit stehen oder die bisherige Biografie präzisieren — Quelle im Videotranscript.

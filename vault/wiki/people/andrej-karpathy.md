@@ -1,10 +1,11 @@
 ---
 category: people
-last_updated: '2026-04-12'
+last_updated: '2026-04-17'
 related_sources:
 - Andrej Karpathy Just 10x'd Everyone's Claude Code.md
 - 2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes
   YOUR AI CODER WAY BETTER!.md
+- 2026-04-16-Claude Code + Graphify = Instant Knowledge Graph (Free).md
 title: Andrej Karpathy
 type: wiki
 ---
@@ -29,3 +30,4 @@ Former Director of AI at Tesla and founding member of OpenAI. One of the most in
 
 - [[Andrej Karpathy Just 10x'd Everyone's Claude Code.md]]
 - [[2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes YOUR AI CODER WAY BETTER!.md]]
+- [[2026-04-16-Claude Code + Graphify = Instant Knowledge Graph (Free).md]]

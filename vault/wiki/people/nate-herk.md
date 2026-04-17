@@ -1,10 +1,13 @@
 ---
 category: people
-last_updated: '2026-04-08'
+last_updated: '2026-04-17'
 related_sources:
 - Andrej Karpathy Just 10x'd Everyone's Claude Code.md
 - Codex Just 10x'd Claude Code Projects.md
 - 2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md
+- 2026-04-16-Claude Opus 4.7 Just Dropped... Or Did It Really.md
+- 2026-04-17-I Gave OpenClaw $10,000 to Trade Stocks.md
+- 2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md
 title: Nate Herk
 type: wiki
 ---
@@ -33,3 +36,6 @@ YouTube creator (@nateherk, ~550K subscribers) focused on AI automation. Founded
 - [[Andrej Karpathy Just 10x'd Everyone's Claude Code.md]]
 - [[Codex Just 10x'd Claude Code Projects.md]]
 - [[2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md]]
+- [[2026-04-16-Claude Opus 4.7 Just Dropped... Or Did It Really.md]]
+- [[2026-04-17-I Gave OpenClaw $10,000 to Trade Stocks.md]]
+- [[2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md]]
