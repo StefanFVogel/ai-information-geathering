@@ -11,10 +11,14 @@
             "id": "8a0ce01d573fee0a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Neuer Tab"
+              "title": "2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader"
             }
           }
         ]
@@ -74,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 259.5
+    "width": 343.5
   },
   "right": {
     "id": "86e38423badb5256",
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rückverweise"
+              "title": "Rückverweise auf 2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader"
             }
           },
           {
@@ -177,6 +182,7 @@
   },
   "active": "8a0ce01d573fee0a",
   "lastOpenFiles": [
+    "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
     "inbox/2026-04-16-Claude Opus 4.7 Just Dropped... Or Did It Really.md",
     "inbox/2026-04-16-Claude Code + Graphify = Instant Knowledge Graph (Free).md",
     "wiki/tools/verdant.md",
@@ -203,7 +209,6 @@
     "Nate Herk.md",
     "sources/youtube/2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md",
     "Codex Just 10x'd Claude Code Projects.md",
-    "Andrej Karpathy.md",
     "index",
     "Clippings"
   ]
