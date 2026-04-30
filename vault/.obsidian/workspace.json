@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
+                "file": "wiki/concepts/wheel-strategy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader"
+              "title": "wheel-strategy"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
+                "file": "wiki/concepts/wheel-strategy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rückverweise auf 2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader"
+              "title": "Rückverweise auf wheel-strategy"
             }
           },
           {
@@ -182,14 +182,25 @@
   },
   "active": "8a0ce01d573fee0a",
   "lastOpenFiles": [
+    "wiki/concepts/rag.md",
+    "wiki/concepts/mcp.md",
+    "wiki/concepts/adaptive-thinking.md",
+    "sources/youtube/2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes YOUR AI CODER WAY BETTER!.md",
+    "sources/youtube/2026-04-12-How I Start Every Claude Code Project.md",
+    "sources/youtube/2026-04-09-Stop Using Claude Code in Terminal (It’s Holding You Back).md",
+    "sources/youtube/2026-04-08-Karpathy's LLM Wiki Watch Me Build a Knowledge Base From Scratch!.md",
+    "sources/youtube/2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md",
+    "sources/youtube/2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md",
+    "Andrej Karpathy.md",
+    "Andrej Karpathy Just 10x'd Everyone's Claude Code.md",
+    "wiki/tools/claude-code.md",
+    "inbox/2026-04-19-The Claude Code Setup Nobody Shows You (Replaces OpenClaw + Hermes).md",
     "inbox/2026-04-17-I Turned Claude Opus 4.7 Into a 247 Trader.md",
     "inbox/2026-04-16-Claude Opus 4.7 Just Dropped... Or Did It Really.md",
     "inbox/2026-04-16-Claude Code + Graphify = Instant Knowledge Graph (Free).md",
     "wiki/tools/verdant.md",
     "wiki/tools/vibe-kanban.md",
     "2026-04-16.md",
-    "sources/youtube/2026-04-08-Karpathy's LLM Wiki Watch Me Build a Knowledge Base From Scratch!.md",
-    "sources/youtube/2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes YOUR AI CODER WAY BETTER!.md",
     "inbox/2026-04-12-How I Start Every Claude Code Project.md",
     "inbox/2026-04-12-Karpathy-Skill + Claude Code,OpenCode This SIMPLE ONE-FILE SKILL Makes YOUR AI CODER WAY BETTER!.md",
     "sources/youtube/Claude Just Changed the Stock Market Forever! (Tutorial).md",
@@ -198,17 +209,6 @@
     "webclips/My Request - CS0289012 - My Support Portal.md",
     "inbox/2026-04-09-Stop Using Claude Code in Terminal (It’s Holding You Back).md",
     "webclips",
-    "wiki/people/onchain-ai-garage.md",
-    "wiki/people/alex-sprogis.md",
-    "inbox/2026-04-08-Karpathy's LLM Wiki Watch Me Build a Knowledge Base From Scratch!.md",
-    "inbox/2026-04-08-GSD Framework für Claude Code Version 1 & 2 im PRAXISTEST. Was ist besser.md",
-    "sources/youtube/2026-04-08-GSD Framework für Claude Code Version 1 & 2 im PRAXISTEST. Was ist besser.md",
-    "sources/youtube/2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md",
-    "inbox/2026-04-08-Every Claude Code Workflow Explained (& When to Use Each).md",
-    "sources/youtube/Andrej Karpathy Just 10x’d Everyone’s Claude Code.md",
-    "Nate Herk.md",
-    "sources/youtube/2026-04-07-STOP Using Bypass Permissions, Use This New Feature Instead.md",
-    "Codex Just 10x'd Claude Code Projects.md",
     "index",
     "Clippings"
   ]
