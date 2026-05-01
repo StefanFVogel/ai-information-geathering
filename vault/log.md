@@ -35,3 +35,4 @@ title: "Activity Log"
 - [2026-04-17 21:30] **wiki-update**: Summarized 4 sources (Graphify, Opus 4.7, OpenClaw Trading Challenge, 24/7 Trader)
 - [2026-04-17 21:30] **wiki-update**: Created 11 new wiki pages (FuturMinds, Graphify, Faster-Whisper, Opus 4.7, OpenClaw, Perplexity, ClickUp, Knowledge Graph, Adaptive Thinking, Claude Code Routines, AI Trading)
 - [2026-04-17 21:30] **wiki-update**: Updated 11 existing wiki pages with new related_sources (Nate Herk, Andrej Karpathy, Samin Yasar, Claude Code, Opus 4.6, Alpaca, Capitol Trades, Codex, Wheel Strategy, Copy Trading, Algorithmic Trading, AI Benchmarks)
+- [2026-04-30 14:11] **ingest**: Processed 2026-04-19-The Claude Code Setup Nobody Shows You (Replaces OpenClaw + Hermes).md (youtube)

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-@standards/docs/claude_coding_rules.md
+@standards/rules/coding-general.md
 
 ## Project: AI Information Gathering
 

@@ -38,13 +38,18 @@ package-lock.json
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 .claude/scheduled_tasks.log
-.claude/skills/help/
 .claude/skills/analyze/
 .claude/skills/architecture/
-.claude/skills/backend/
-.claude/skills/frontend/
-.claude/skills/qa/
-.claude/skills/deploy/
 .claude/skills/ticket/
 .claude/skills/requirements/
 .claude/skills/styles/
+
+.claude/hooks/_hook_utils.py
+.claude/hooks/commit_guard.py
+.claude/hooks/stop_guard.py
+.claude/context.md
+.claude/cache/
+# Rules from standards submodule
+.claude/rules/
+# Skills from standards submodule (not projekt/)
+.claude/skills/requesting-code-review/
